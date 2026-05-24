@@ -35,6 +35,10 @@ public class FormularioEquipoController {
     private Equipo enEdicion;  // null si es alta
     private boolean guardado = false;
 
+    // Callbacks para modo embebido (panel lateral)
+    private Runnable onGuardado;
+    private Runnable onCancelado;
+
     @FXML
     public void initialize() {
         cmbTipo.getItems().setAll(TipoEquipo.values());
@@ -47,8 +51,10 @@ public class FormularioEquipoController {
     /** Llamar tras cargar el FXML. Si paraEditar es null, es alta; si no, edicion. */
     public void iniciar(Equipo paraEditar) {
         this.enEdicion = paraEditar;
+        this.guardado = false;
+        limpiarCampos();
         if (paraEditar == null) {
-            lblTitulo.setText("Nuevo equipo");
+            lblTitulo.setText("Nuevo Equipo");
         } else {
             lblTitulo.setText("Editar equipo #" + paraEditar.getId_equipo());
             txtNombre.setText(paraEditar.getNombre());
@@ -65,30 +71,42 @@ public class FormularioEquipoController {
 
     public boolean guardado() { return guardado; }
 
+    /** Callback cuando se guarda exitosamente (modo panel lateral). */
+    public void setOnGuardado(Runnable onGuardado) {
+        this.onGuardado = onGuardado;
+    }
+
+    /** Callback cuando se cancela (modo panel lateral). */
+    public void setOnCancelado(Runnable onCancelado) {
+        this.onCancelado = onCancelado;
+    }
+
     @FXML
     private void onCancelar(ActionEvent ev) {
-        cerrar();
+        if (onCancelado != null) {
+            onCancelado.run();
+        } else {
+            cerrar();
+        }
     }
 
     @FXML
     private void onGuardar(ActionEvent ev) {
         // Validacion basica del lado cliente
         if (vacio(txtNombre.getText()) || cmbTipo.getValue() == null
-                || vacio(txtMarca.getText()) || vacio(txtModelo.getText())
-                || vacio(txtSerie.getText()) || vacio(txtUbicacion.getText())
-                || dpInstalacion.getValue() == null
+                || vacio(txtSerie.getText())
                 || cmbCriticidad.getValue() == null || cmbEstado.getValue() == null) {
-            Dialogos.error("Datos incompletos", "Todos los campos son obligatorios.");
+            Dialogos.error("Datos incompletos", "Nombre, tipo, N° de serie, criticidad y estado son obligatorios.");
             return;
         }
 
         Equipo e = (enEdicion != null) ? enEdicion : new Equipo();
         e.setNombre(txtNombre.getText().trim());
         e.setTipo(cmbTipo.getValue());
-        e.setMarca(txtMarca.getText().trim());
-        e.setModelo(txtModelo.getText().trim());
+        e.setMarca(txtMarca.getText() == null ? "" : txtMarca.getText().trim());
+        e.setModelo(txtModelo.getText() == null ? "" : txtModelo.getText().trim());
         e.setNumero_serie(txtSerie.getText().trim());
-        e.setUbicacion_planta(txtUbicacion.getText().trim());
+        e.setUbicacion_planta(txtUbicacion.getText() == null ? "" : txtUbicacion.getText().trim());
         e.setFecha_instalacion(dpInstalacion.getValue());
         e.setCriticidad(cmbCriticidad.getValue());
         e.setEstado_operativo(cmbEstado.getValue());
@@ -104,15 +122,37 @@ public class FormularioEquipoController {
                 Dialogos.info("OK", "Equipo actualizado");
             }
             guardado = true;
-            cerrar();
+            if (onGuardado != null) {
+                onGuardado.run();
+            } else {
+                cerrar();
+            }
         } catch (Exception ex) {
             LOG.log(Level.WARNING, "Guardar equipo rechazado", ex);
             Dialogos.error("No se pudo guardar", ex.getMessage());
         }
     }
 
+    private void limpiarCampos() {
+        txtNombre.clear();
+        cmbTipo.getSelectionModel().clearSelection();
+        txtMarca.clear();
+        txtModelo.clear();
+        txtSerie.clear();
+        txtUbicacion.clear();
+        dpInstalacion.setValue(LocalDate.now());
+        cmbCriticidad.getSelectionModel().clearSelection();
+        cmbEstado.getSelectionModel().select(EstadoOperativo.OPERATIVO);
+    }
+
     private void cerrar() {
-        ((Stage) lblTitulo.getScene().getWindow()).close();
+        Stage stage = (Stage) lblTitulo.getScene().getWindow();
+        // Solo cerrar si es un Stage separado (modal), no si es embebido
+        if (stage != null && stage.getOwner() != null) {
+            stage.close();
+        } else if (stage != null) {
+            stage.close();
+        }
     }
 
     private static boolean vacio(String s) {

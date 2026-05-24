@@ -1,6 +1,6 @@
 /* ===========================================================
    SIGOMEI · Cliente — Estilos
-   Inspirado en wireframe monocromático (gris claro + acentos)
+   Adaptado al wireframe monocromático (gris claro + acentos)
    =========================================================== */
 
 .root {
@@ -124,6 +124,14 @@
     -fx-underline: true;
 }
 
+/* Botones pequeños para celdas de acciones */
+.button-sm {
+    -fx-padding: 3 10 3 10;
+    -fx-font-size: 12px;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+}
+
 /* ----------  Inputs ---------- */
 .text-field, .password-field, .text-area, .combo-box, .date-picker {
     -fx-background-color: -color-panel;
@@ -173,6 +181,18 @@
 .date-picker .arrow-button {
     -fx-background-color: transparent;
     -fx-border-color: transparent;
+}
+
+/* Inputs más pequeños para barra de filtros */
+.filter-combo {
+    -fx-max-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 12px;
+}
+.filter-field {
+    -fx-max-height: 30px;
+    -fx-pref-height: 30px;
+    -fx-font-size: 12px;
 }
 
 /* ----------  TabPane  ---------- */
@@ -302,6 +322,18 @@
     -fx-padding: 10 12 10 12;
 }
 
+/* Footer del login */
+.login-footer {
+    -fx-background-color: transparent;
+    -fx-padding: 16 0 16 0;
+    -fx-alignment: CENTER;
+}
+.login-footer .label {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 11px;
+    -fx-letter-spacing: 0.08em;
+}
+
 /* ----------  Header (Dashboard)  ---------- */
 .app-header {
     -fx-background-color: -color-panel;
@@ -338,6 +370,178 @@
     -fx-text-fill: -color-text;
 }
 
+/* ----------  Barra de filtros  ---------- */
+.filter-bar {
+    -fx-background-color: -color-panel;
+    -fx-padding: 10 16 10 16;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 0 1 0;
+    -fx-spacing: 12;
+    -fx-alignment: CENTER_LEFT;
+}
+.filter-bar .label {
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -color-text-muted;
+}
+
+/* ----------  Panel lateral (formulario embebido) ---------- */
+.side-panel {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border;
+    -fx-border-width: 0 0 0 1;
+    -fx-padding: 20 20 20 20;
+}
+.side-panel .title {
+    -fx-font-size: 16px;
+}
+.side-panel .subtitle {
+    -fx-font-size: 11px;
+    -fx-text-fill: -color-text-muted;
+}
+
+/* ----------  SplitPane limpio  ---------- */
+.split-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+.split-pane > .split-pane-divider {
+    -fx-background-color: -color-border;
+    -fx-padding: 0 0.5 0 0.5;
+}
+
+/* ----------  Paginación  ---------- */
+.pagination-bar {
+    -fx-padding: 8 0 0 0;
+    -fx-spacing: 6;
+    -fx-alignment: CENTER;
+}
+.pagination-bar .label {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 12px;
+}
+.page-btn {
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-max-width: 28px;
+    -fx-max-height: 28px;
+    -fx-padding: 0;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER;
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border-2;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+.page-btn:hover {
+    -fx-background-color: -color-row-hover;
+}
+.page-btn-active {
+    -fx-min-width: 28px;
+    -fx-min-height: 28px;
+    -fx-max-width: 28px;
+    -fx-max-height: 28px;
+    -fx-padding: 0;
+    -fx-background-radius: 4px;
+    -fx-border-radius: 4px;
+    -fx-font-size: 12px;
+    -fx-alignment: CENTER;
+    -fx-background-color: -color-primary;
+    -fx-text-fill: white;
+    -fx-border-color: -color-primary;
+    -fx-border-width: 1;
+    -fx-cursor: hand;
+}
+
+/* ----------  Status dots / badges  ---------- */
+.status-dot {
+    -fx-min-width: 8px;
+    -fx-min-height: 8px;
+    -fx-max-width: 8px;
+    -fx-max-height: 8px;
+    -fx-background-radius: 999px;
+}
+.status-dot-green {
+    -fx-background-color: #22c55e;
+}
+.status-dot-yellow {
+    -fx-background-color: #eab308;
+}
+.status-dot-red {
+    -fx-background-color: #ef4444;
+}
+.status-dot-gray {
+    -fx-background-color: #9ca3af;
+}
+
+.status-badge {
+    -fx-padding: 2 8 2 8;
+    -fx-background-radius: 4px;
+    -fx-font-size: 11px;
+}
+.status-badge-green {
+    -fx-background-color: #dcfce7;
+    -fx-text-fill: #166534;
+}
+.status-badge-yellow {
+    -fx-background-color: #fef9c3;
+    -fx-text-fill: #854d0e;
+}
+.status-badge-red {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #991b1b;
+}
+
+/* ----------  Modal cambio de estado  ---------- */
+.modal-card {
+    -fx-background-color: -color-panel;
+    -fx-background-radius: 10px;
+    -fx-border-color: -color-border;
+    -fx-border-radius: 10px;
+    -fx-border-width: 1;
+    -fx-padding: 24 28 20 28;
+    -fx-effect: dropshadow(gaussian, rgba(15,23,42,0.10), 16, 0, 0, 6);
+}
+.modal-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+.modal-info {
+    -fx-font-size: 12px;
+    -fx-text-fill: -color-text-muted;
+    -fx-font-family: "SF Mono", "Consolas", monospace;
+}
+
+/* Transiciones de estado */
+.transition-row {
+    -fx-padding: 8 12 8 12;
+    -fx-background-radius: 6px;
+    -fx-border-radius: 6px;
+    -fx-border-width: 1;
+    -fx-spacing: 8;
+    -fx-alignment: CENTER_LEFT;
+}
+.transition-allowed {
+    -fx-background-color: -color-panel;
+    -fx-border-color: -color-border;
+}
+.transition-blocked {
+    -fx-background-color: #fafafa;
+    -fx-border-color: #e5e7eb;
+    -fx-opacity: 0.6;
+}
+.transition-arrow {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 14px;
+}
+.transition-note {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 11px;
+    -fx-font-style: italic;
+}
+
 /* ----------  Status bar / mensajes  ---------- */
 .status-message {
     -fx-text-fill: -color-text-muted;
@@ -368,4 +572,14 @@
 .scroll-bar .decrement-arrow {
     -fx-shape: " ";
     -fx-padding: 0;
+}
+
+/* ----------  Reportes placeholder  ---------- */
+.reportes-placeholder {
+    -fx-alignment: CENTER;
+    -fx-padding: 60;
+}
+.reportes-placeholder .label {
+    -fx-text-fill: -color-text-muted;
+    -fx-font-size: 16px;
 }

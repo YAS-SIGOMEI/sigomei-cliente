@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="modal-card" spacing="14" prefWidth="520"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="sigomei.cliente.vista.CambioEstadoOrdenController">
+
+    <!-- Título + cerrar -->
+    <HBox alignment="CENTER_LEFT">
+        <Label fx:id="lblTitulo" text="Cambiar estado de orden" styleClass="modal-title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="✕" onAction="#onCerrar" styleClass="button-link" style="-fx-font-size: 16px;"/>
+    </HBox>
+
+    <!-- Info de la orden -->
+    <Label fx:id="lblInfo" styleClass="modal-info" wrapText="true"/>
+
+    <!-- Estado actual -->
+    <HBox spacing="8" alignment="CENTER_LEFT">
+        <Label text="Estado actual:"/>
+        <HBox fx:id="estadoActualBox" spacing="4" alignment="CENTER_LEFT"/>
+    </HBox>
+
+    <Separator/>
+
+    <!-- Transiciones permitidas -->
+    <Label text="TRANSICIONES PERMITIDAS" styleClass="label-section" style="-fx-font-weight: bold;"/>
+    <VBox fx:id="transicionesBox" spacing="8"/>
+
+    <Separator/>
+
+    <!-- Leyenda -->
+    <HBox spacing="16" alignment="CENTER_LEFT">
+        <Label text="— PERMITIDO" style="-fx-text-fill: #22c55e; -fx-font-size: 11px;"/>
+        <Label text="— BLOQUEADO" style="-fx-text-fill: #9ca3af; -fx-font-size: 11px;"/>
+    </HBox>
+
+    <!-- Botones -->
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancelar" onAction="#onCerrar"/>
+        <Button fx:id="btnConfirmar" text="Confirmar" onAction="#onConfirmar"
+                styleClass="button,button-primary" disable="true"/>
+    </HBox>
+</VBox>
