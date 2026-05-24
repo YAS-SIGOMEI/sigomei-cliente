@@ -323,6 +323,10 @@ public class OrdenesTabController {
             if (nuevoEstado == EstadoOrden.FINALIZADA) {
                 // Abrir formulario de cierre
                 abrirFormularioCierre(orden);
+            } else if (nuevoEstado == EstadoOrden.CANCELADA) {
+                Sesion.get().ordenes().cancelarOrden(orden.getId_orden());
+                Dialogos.info("OK", "Orden #" + orden.getId_orden() + " → " + nuevoEstado);
+                refrescar();
             } else {
                 Sesion.get().ordenes().avanzarEstadoOrden(orden.getId_orden(), nuevoEstado);
                 Dialogos.info("OK", "Orden #" + orden.getId_orden() + " → " + nuevoEstado);
