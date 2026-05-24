@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<StackPane styleClass="login-root" prefWidth="900" prefHeight="640"
+           xmlns="http://javafx.com/javafx/21"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="sigomei.cliente.vista.LoginController">
+
+    <VBox styleClass="login-card" alignment="TOP_CENTER" spacing="18"
+          maxWidth="400" maxHeight="-Infinity">
+
+        <!-- Logo placeholder -->
+        <VBox styleClass="login-logo" alignment="CENTER" spacing="2">
+            <Label text="SIGOMEI" styleClass="label-brand"/>
+            <Label text="LOGO" styleClass="label-sub"/>
+        </VBox>
+
+        <VBox alignment="CENTER" spacing="6">
+            <Label text="Iniciar sesión" styleClass="title"/>
+            <Label text="Sistema de Gestión de Órdenes de Mantenimiento de Equipos Industriales"
+                   styleClass="subtitle" wrapText="true" maxWidth="320"
+                   style="-fx-text-alignment: center;"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Usuario"/>
+            <TextField fx:id="campoUsuario" promptText="ingrese su usuario"/>
+        </VBox>
+
+        <VBox spacing="6">
+            <Label text="Contraseña"/>
+            <PasswordField fx:id="campoContrasena" promptText="••••••••"/>
+        </VBox>
+
+        <Button fx:id="botonLogin" text="Ingresar" defaultButton="true"
+                onAction="#onLogin" maxWidth="Infinity"
+                styleClass="button,button-primary"/>
+
+        <VBox fx:id="cajaError" styleClass="error-box" managed="false" visible="false">
+            <Label fx:id="mensajeError" styleClass="error-text" wrapText="true"/>
+        </VBox>
+
+        <HBox alignment="CENTER_LEFT" spacing="8">
+            <Button text="¿Olvidó su contraseña?" styleClass="button-link"/>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Label text="v 1.0.0" styleClass="label-muted"/>
+        </HBox>
+
+        <padding>
+            <Insets top="8" right="0" bottom="0" left="0"/>
+        </padding>
+    </VBox>
+</StackPane>

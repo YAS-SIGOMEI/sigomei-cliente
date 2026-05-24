@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="14"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="sigomei.cliente.vista.OrdenesTabController">
+
+    <padding><Insets top="20" right="24" bottom="20" left="24"/></padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Órdenes" styleClass="title"/>
+        <Region HBox.hgrow="ALWAYS"/>
+        <Button text="Refrescar" onAction="#onRefrescar"/>
+        <Button text="Iniciar" onAction="#onIniciar"/>
+        <Button text="Cerrar orden" onAction="#onCerrar"/>
+        <Button text="Editar" onAction="#onEditar"/>
+        <Button text="Cancelar orden" onAction="#onCancelar" styleClass="button,button-danger"/>
+        <Button text="+ Nueva orden" onAction="#onNueva" styleClass="button,button-primary"/>
+    </HBox>
+
+    <VBox styleClass="card" VBox.vgrow="ALWAYS">
+        <TableView fx:id="tabla" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn fx:id="colId"          text="ID"           prefWidth="70"/>
+                <TableColumn fx:id="colEquipo"      text="EQUIPO"       prefWidth="100"/>
+                <TableColumn fx:id="colTecnico"     text="TÉCNICO"      prefWidth="100"/>
+                <TableColumn fx:id="colTipo"        text="TIPO"         prefWidth="110"/>
+                <TableColumn fx:id="colFechaProg"   text="PROGRAMADA"   prefWidth="110"/>
+                <TableColumn fx:id="colFechaIni"    text="INICIO"       prefWidth="100"/>
+                <TableColumn fx:id="colFechaCierre" text="CIERRE"       prefWidth="100"/>
+                <TableColumn fx:id="colEstado"      text="ESTADO"       prefWidth="120"/>
+                <TableColumn fx:id="colCostoEst"    text="COSTO EST."   prefWidth="100"/>
+                <TableColumn fx:id="colCostoReal"   text="COSTO REAL"   prefWidth="100"/>
+                <TableColumn fx:id="colDescripcion" text="DESCRIPCIÓN"  prefWidth="240"/>
+            </columns>
+        </TableView>
+    </VBox>
+
+    <Label fx:id="lblMensaje" styleClass="status-message"/>
+</VBox>

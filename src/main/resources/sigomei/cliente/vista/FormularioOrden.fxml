@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="14" prefWidth="600"
+      xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="sigomei.cliente.vista.FormularioOrdenController">
+
+    <padding><Insets top="24" right="24" bottom="20" left="24"/></padding>
+
+    <VBox spacing="2">
+        <Label fx:id="lblTitulo" text="Nueva orden" styleClass="title"/>
+        <Label text="Asigne equipo, técnico y fechas de la orden" styleClass="subtitle"/>
+    </VBox>
+
+    <GridPane hgap="12" vgap="12">
+        <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="50"/>
+            <ColumnConstraints hgrow="SOMETIMES" percentWidth="50"/>
+        </columnConstraints>
+
+        <VBox spacing="6" GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <Label text="Equipo"/>
+            <ComboBox fx:id="cmbEquipo" maxWidth="Infinity" promptText="Seleccionar equipo"/>
+        </VBox>
+        <VBox spacing="6" GridPane.rowIndex="0" GridPane.columnIndex="1">
+            <Label text="Técnico"/>
+            <ComboBox fx:id="cmbTecnico" maxWidth="Infinity" promptText="Seleccionar técnico"/>
+        </VBox>
+
+        <VBox spacing="6" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <Label text="Tipo"/>
+            <ComboBox fx:id="cmbTipo" maxWidth="Infinity" promptText="Preventivo / Correctivo"/>
+        </VBox>
+        <VBox spacing="6" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <Label text="Costo estimado"/>
+            <TextField fx:id="txtCostoEst" promptText="0.00"/>
+        </VBox>
+
+        <VBox spacing="6" GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <Label text="Fecha programada"/>
+            <DatePicker fx:id="dpProgramada" maxWidth="Infinity" promptText="dd/mm/aaaa"/>
+        </VBox>
+        <VBox spacing="6" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <Label text="Fecha inicio"/>
+            <DatePicker fx:id="dpInicio" maxWidth="Infinity" promptText="dd/mm/aaaa"/>
+        </VBox>
+
+        <VBox spacing="6" GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <Label text="Fecha cierre"/>
+            <DatePicker fx:id="dpCierre" maxWidth="Infinity" promptText="dd/mm/aaaa"/>
+        </VBox>
+
+        <VBox spacing="6" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2">
+            <Label text="Descripción"/>
+            <TextArea fx:id="txtDescripcion" prefRowCount="4" wrapText="true"
+                      promptText="Detalle del trabajo..."/>
+        </VBox>
+    </GridPane>
+
+    <Region minHeight="8"/>
+
+    <HBox spacing="10" alignment="CENTER_RIGHT">
+        <Button text="Cancelar" onAction="#onCancelar"/>
+        <Button text="Guardar" defaultButton="true" onAction="#onGuardar"
+                styleClass="button,button-primary"/>
+    </HBox>
+</VBox>
