@@ -8,6 +8,8 @@ Mantenimiento de Equipos Industriales.**
 | **Equipo** | Yaelito's Solution |
 | **Integrantes** | Yael Franco Toledo · José Emilio León Cruz · Rafael Alejandro Beltran Santos |
 
+**Versión:** 1.0 (entrega final E5)
+
 ## Descripción
 
 Este repositorio contiene el **cliente** del proyecto SIGOMEI. Se comunica
